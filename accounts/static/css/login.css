@@ -1,0 +1,16 @@
+.btn-hydroshare {
+  color: #555555;
+  background-color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-hydroshare:hover {
+  color: #ffffff;
+  background-color: #71a43a;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.fa-hydroshare {
+  background-image: url(/static/images/hs-icon-sm.png);
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-position: 4px 5px;
+}

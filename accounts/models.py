@@ -1,6 +1,7 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, AbstractUser
 from django.db import models
+from django.contrib.auth.models import User
 
 from accounts.UserManager import UserManager
 
@@ -20,46 +21,50 @@ from accounts.UserManager import UserManager
 '''
 
 
-class User(AbstractUser):
-    # password is a default field, so no need to add it here
-    email = models.EmailField(max_length=255, unique=True)
-    is_active = models.BooleanField(default=True)  # can log in
-    is_staff = models.BooleanField(default=False)  # staff user
-    is_superuser = models.BooleanField(default=False)  # superuser
+#class User(AbstractUser):
+    # # password is a default field, so no need to add it here
+    # email = models.EmailField(max_length=255, unique=True)
+    # is_active = models.BooleanField(default=True)  # can log in
+    # is_staff = models.BooleanField(default=False)  # staff user
+    # is_superuser = models.BooleanField(default=False)  # superuser
+    #
+
+    #timestamp = models.DateTimeField(auto_now_add=True)
+    #
+    # USERNAME_FIELD = 'username'
+    #
+    # # USERNAME_FIELD and password are required by default
+    # REQUIRED_FIELDS = ["email"]
+
+    # objects = UserManager()
 
 
-    timestamp = models.DateTimeField(auto_now_add=True)
+    #
+    # def __str__(self):
+    #     return self.email
+    #
+    # def get_full_name(self):
+    #     return self.email
+    #
+    # def get_short_name(self):
+    #     return self.email
+    #
+    # def has_perm(self, perm, obj=None):
+    #     return True
+    #
+    # def has_module_perms(self, app_label):
+    #     return True
+    #
+    # @property
+    # def username(self):
+    #      return self.username
+    #
+    #
+    # @property
+    # def is_admin(self):
+    #     return self.is_superuser
 
-    USERNAME_FIELD = 'email'
 
-    # USERNAME_FIELD and password are required by default
-    REQUIRED_FIELDS = []
-
-    objects = UserManager()
-
-
-
-    def __str__(self):
-        return self.email
-
-    def get_full_name(self):
-        return self.email
-
-    def get_short_name(self):
-        return self.email
-
-    def has_perm(self, perm, obj=None):
-        return True
-
-    def has_module_perms(self, app_label):
-        return True
-
-    def username(self):
-        return self.email
-
-    @property
-    def is_admin(self):
-        return self.is_superuser
 
     # these methods were overwriting required attributes for djangocms
     #  CMS Requires: is_active, is_staff, & is_superuser

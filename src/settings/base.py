@@ -99,9 +99,12 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.template.context_processors.csrf',
                 'django.template.context_processors.tz',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
                 'sekizai.context_processors.sekizai',
                 'django.template.context_processors.static',
-                'cms.context_processors.cms_settings'
+                'cms.context_processors.cms_settings',
+
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
@@ -144,6 +147,8 @@ INSTALLED_APPS = (
 
     # include custom User from accounts app before loading the cms
     'accounts',
+    # OAuth client
+    'social_django',
 
     # add in the django-cms apps
     'cms',
@@ -188,7 +193,8 @@ INSTALLED_APPS = (
 
 )
 
-AUTH_USER_MODEL = 'accounts.User'
+# AUTH_USER_MODEL = 'accounts.User'
+# SOCIAL_AUTH_USER_MODEL = 'accounts.User'
 
 LANGUAGES = (
     ## Customize this
@@ -411,4 +417,16 @@ CKEDITOR_SETTINGS_OverlayImg = {
 }
 
 
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
+SOCIAL_AUTH_SLUGIFY_USERNAMES = True
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/manage/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/accounts/login/'
 
+
+AUTHENTICATION_BACKENDS = (
+    'accounts.hydroshare_oauth.HydroShareOAuth2',
+#    'social_core.backends.linkedin.LinkedinOAuth2',
+#    'social_core.backends.google.GoogleOAuth2',
+#    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)

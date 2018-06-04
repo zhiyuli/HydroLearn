@@ -64,7 +64,11 @@ urlpatterns += i18n_patterns(
 
 
     url(r'^admin/', include(admin.site.urls)),  # NOQA
+    url(r'^oauth2/', include('social_django.urls', namespace='social')),  # OAuth, should be placed prior to cms urls
     url(r'^', include('cms.urls')),
+
+
+
 )  + staticfiles_urlpatterns()
 
 # This is only needed when using runserver.

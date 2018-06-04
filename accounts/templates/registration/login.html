@@ -1,6 +1,10 @@
 {% extends CMS_TEMPLATE %}
 {% load cms_tags menu_tags sekizai_tags static %}
 
+{% block addtl_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
+{% endblock %}
+
 {% block title %}Login{% endblock title %}
 
 {% block content %}
@@ -22,6 +26,9 @@
     <p>Please fill out your login credentials below.</p>
 
     <form method="post" action="{% url 'login' %}">{% csrf_token %}
+
+
+
         <table>
             {{ form.as_table}}
         </table>
@@ -29,6 +36,10 @@
         <input type="submit" value="Login" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
+
+     {% if 'hydroshare' in backends.not_associated %}
+              <a class="btn btn-social btn-hydroshare" href="{% url 'social:begin' 'hydroshare' %}{% if request.GET.next %}?next={{request.GET.next|urlencode}}{% endif %}"><i class="fa-hydroshare"></i>Sign in with HydroShare</a>
+     {% endif %}
 
     {# Assumes you setup the password_reset view in your URLconf #}
     <p>

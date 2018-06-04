@@ -9,7 +9,7 @@ from accounts.forms import UserAdminCreationForm, UserAdminChangeForm
 # Register your models here.
 
 # get our custom user model
-User = get_user_model()
+#User = get_user_model()
 
 # create user model admin
 class UserAdmin(BaseUserAdmin):
@@ -49,4 +49,9 @@ class UserAdmin(BaseUserAdmin):
 
 #admin.site.unregister(User)
 # register custom user model with admin site
-admin.site.register(User, UserAdmin)
+#admin.site.register(User, UserAdmin)
+
+
+from django.contrib.auth.models import User
+admin.site.unregister(User)
+admin.site.register(User, BaseUserAdmin)
