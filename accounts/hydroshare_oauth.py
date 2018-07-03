@@ -1,3 +1,4 @@
+# Adopted from Tethys platform
 
 from datetime import datetime
 import time
@@ -60,18 +61,6 @@ class HydroShareOAuth2(BaseOAuth2):
         data['expires_at'] = expires_at
         expires_at_str = datetime.fromtimestamp(expires_at).strftime('%Y-%m-%d %H:%M:%S')
         data["expires_at_str"] = expires_at_str
-
-        # # Reconstitute token dictionary for client convenience
-        # # backward compatible
-        # token_dict = {
-        #     'access_token': data['access_token'],
-        #     'token_type': data['token_type'],
-        #     'expires_in': data['expires_in'],
-        #     'expires_at': data['expires_at'],
-        #     'refresh_token': data['refresh_token'],
-        #     'scope': data['scope']
-        # }
-        # data['token_dict'] = token_dict
 
         return data
 

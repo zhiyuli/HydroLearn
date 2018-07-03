@@ -425,8 +425,5 @@ SOCIAL_AUTH_LOGIN_ERROR_URL = '/accounts/login/'
 
 AUTHENTICATION_BACKENDS = (
     'accounts.hydroshare_oauth.HydroShareOAuth2',
-#    'social_core.backends.linkedin.LinkedinOAuth2',
-#    'social_core.backends.google.GoogleOAuth2',
-#    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
